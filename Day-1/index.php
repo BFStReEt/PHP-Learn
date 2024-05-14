@@ -11,5 +11,8 @@
 </html>
 
 <?php
-echo "Nguyen Anh Toi";
+    $a = array("Ngay","em","di");
+    foreach($a as $b){
+        echo $b;
+    }
 ?>
