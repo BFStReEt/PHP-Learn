@@ -6,5 +6,9 @@
 </form>
 
 <?php
-    echo $_REQUEST['dulieu'];
+    require "xuly.php";
+    require_once "xuly.php"
+    
+    include "xuly.php"
+    include_once "xuly.php"
 ?>
