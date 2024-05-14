@@ -1,11 +1,10 @@
+<form action="index.php" method="post">
 
+    <input type="text" name="dulieu">
+    <input type="submit">
+
+</form>
 
 <?php
-$a = 5;
-$b = 10;
-function phepcong(){
-    $GLOBALS['c'] = $GLOBALS['a'] + $GLOBALS['b'];
-}
-phepcong();
-echo $c;
+    echo $_POST['dulieu'];
 ?>
