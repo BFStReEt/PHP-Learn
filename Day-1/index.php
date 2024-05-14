@@ -6,5 +6,5 @@
 </form>
 
 <?php
-    echo $_POST['dulieu'];
+    echo $_REQUEST['dulieu'];
 ?>
