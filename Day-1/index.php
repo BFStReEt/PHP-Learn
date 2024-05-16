@@ -11,11 +11,18 @@
 <body>
     <?php
     $nameempty = "";
+    $name = "";
+    //Đây là phương thức khi ấn submit
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST['name'])) {
             $nameempty = "Hong được để trống bé ơi !";
         } else {
-            echo $_POST['name'];
+            $name = $_POST['name'];
+            if (!preg_match("/^[a-zA-Z]*$/", $name)) {
+                $nameempty = 'Không được nhập ký tự đặc biệt';
+            } else {
+                echo $name;
+            }
         }
     }
 
