@@ -1,19 +1,9 @@
 <form action="index.php" method="post">
     Tên:<input type="text" name="name">
-    <input type="submit">
+    <input type="submit" value="Gửi" name="btn">
 </form>
 <?php
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $name = $_POST['name'];
-    echo $name;
-    if($name == "Nguyễn Anh Tới"){
-        echo " sinh năm 2000 github";
-    }
-    else if($name == "Hùng"){
-        echo " chúng ta của hiện tại";
-    }
-    else{
-        echo " hiện không tồn tại tên này";
-    }
+if(isset($_POST["btn"])){
+    echo "Hello ban nho";
 }
 ?>
