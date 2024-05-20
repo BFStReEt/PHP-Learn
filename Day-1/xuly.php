@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 //Mất streak một ngày
+//Mất streak hai ngày
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
