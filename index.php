@@ -1,7 +1,7 @@
 
 <?php
 $cookie = "user";
-$cookievalue = "HEHE";
+$cookievalue = "Nam";
 
 setcookie($cookie, $cookievalue, time() + (30), "/");
 
