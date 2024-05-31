@@ -1,6 +1,6 @@
 
 <?php
 session_start();
-$_SESSION["name"] = "HEHE";
-echo $_SESSION["name"];
+$_SESSION["Loicamon"] = "Cảm ơn người vì những tôn thương đã trao";
+echo $_SESSION["Loicamon"];
 ?>
