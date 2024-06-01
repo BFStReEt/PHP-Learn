@@ -1,11 +1,11 @@
 <?php
-$ip = "127.0.0.1";
+$email = "ahihi@gmail.com";
 
-if(!filter_var($ip,FILTER_VALIDATE_IP) == false){
-    echo "Day la IP hop le !";
+if(!filter_var($email,FILTER_VALIDATE_EMAIL) == false){
+    echo "Day la email hop le !";
 }
 else{
-    echo "Khong la IP hop le !";
+    echo "Khong la email hop le !";
 }
 
 
