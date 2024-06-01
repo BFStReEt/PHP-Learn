@@ -1,17 +1,11 @@
 <?php
-$songuyen = "ahaha";
-$chuoi = 0;
+$ip = "127.0.0.1";
 
-$locchuoi = filter_var($chuoi,FILTER_SANITIZE_STRING);
-if(filter_var($songuyen,FILTER_VALIDATE_INT) == false){
-    echo "Day khong phai la so nguyen";
+if(!filter_var($ip,FILTER_VALIDATE_IP) == false){
+    echo "Day la IP hop le !";
 }
 else{
-    echo $songuyen . " lai la DG House";
-}
-
-if($locchuoi){
-    echo "<br>$locchuoi" . " day la chuoi";
+    echo "Khong la IP hop le !";
 }
 
 
