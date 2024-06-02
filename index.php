@@ -1,12 +1,8 @@
 <?php
-$email = "ahihi@gmail.com";
+$url = "https://github.com/BFStReEt/PHP-Learn/commits/main/";
 
-if(!filter_var($email,FILTER_VALIDATE_EMAIL) == false){
-    echo "Day la email hop le !";
+if (!filter_var($url, FILTER_VALIDATE_URL) == false) {
+    echo "Day la url hop le !";
+} else {
+    echo "Khong la url hop le !";
 }
-else{
-    echo "Khong la email hop le !";
-}
-
-
-?>
