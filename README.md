@@ -4,10 +4,9 @@ PHP
 
 1. Giới thiệu
    - PHP (Hypertext Preprocessor) là một ngôn ngữ lập trình phía server, chủ yếu được sử dụng để phát triển các ứng dụng web động.
-   - Mục tiêu của hành trình học PHP này là cung cấp các kiến thức cơ bản đến nâng cao về PHP, giúp bạn có thể xây dựng các ứng dụng web hoàn chỉnh.
 
 2. Môi trường phát triển
-   - Cài đặt XAMPP: XAMPP là một phần mềm tích hợp bao gồm Apache, MySQL, PHP và Perl, giúp dễ dàng thiết lập môi trường phát triển PHP.
+   - Cài đặt XAMPP: XAMPP là một phần mềm tích hợp bao gồm Apache, MySQL, PHP và Perl.
    - Thiết lập Visual Studio Code hoặc một IDE khác như PHPStorm để viết mã PHP.
 
 3. Lập trình hướng đối tượng (OOP) trong PHP
