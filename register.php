@@ -2,27 +2,27 @@
     // register.php
     require 'config.php';
     session_start();
-    if(isset($_SESSION['username'])){
+    if (isset($_SESSION['username'])) {
         header("location:login.php");
     }
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//Kiểm tra username trùng không ?
+        //Kiểm tra username trùng không
         $sql_check = "SELECT COUNT(*) FROM users WHERE username = ?";
         $stmt_check = $conn->prepare($sql_check);
-        $stmt_check->bind_param("s",$username);
-        $stmt_check->excute();
+        $stmt_check->bind_param("s", $username);
+        $stmt_check->execute();
         $stmt_check->bind_result($count);
+        $stmt_check->fetch();
 
-        if(){
+        if ($count > 0) {
             echo "Tài khoản này đã có người dùng";
-        }
-        else{
+        } else {
             $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ss", $username, $password);
-    
+
             if ($stmt->execute()) {
                 $_SESSION['username'] = $username;
                 echo "Đăng ký thành công! Bạn có thể <a href='login.php'>đăng nhập</a>.";
