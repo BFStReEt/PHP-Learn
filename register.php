@@ -8,7 +8,7 @@
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
+//Kiểm tra username trùng không ?
         $sql_check = "SELECT COUNT(*) FROM users WHERE username = ?";
         $stmt_check = $conn->prepare($sql_check);
         $stmt_check->bind_param("s",$username);
