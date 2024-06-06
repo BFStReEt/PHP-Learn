@@ -43,6 +43,7 @@ if (isset($_POST['submit'])) {
     }
 
     $conn->close();
+    //Kiếm form và mở rộng phần đăng ký phải có họ tên người dùng
 }
 ?>
 
