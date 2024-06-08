@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
     <div class="form signup">
         <div class="form-content">
             <header>Signup</header>
@@ -41,7 +40,7 @@
             </form>
 
             <div class="form-link">
-                <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+                <span>Already have an account? <a href="index.php" class="link login-link">Login</a></span>
             </div>
         </div>
 
