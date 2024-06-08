@@ -53,8 +53,7 @@ if (isset($_POST['submit'])) {
 <body>
     <h2>Đăng ký</h2>
     <form method="post">
-        Tên đăng nhập: <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>"
-            required><br>
+        Tên đăng nhập: <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>" required><br>
         Mật khẩu: <input type="password" name="password" required><br>
         <button type="submit" name="submit">Đăng ký</button>
     </form>
