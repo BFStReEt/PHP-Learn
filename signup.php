@@ -1,4 +1,3 @@
-<!-- Signup Form -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,32 +9,29 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <body>
     <div class="form signup">
         <div class="form-content">
             <header>Signup</header>
-            <form action="#">
+            <form action="register.php" method="post">
                 <div class="field input-field">
-                    <input type="email" placeholder="Email" class="input">
+                    <input type="email" name="email" placeholder="Email" class="input" required>
                 </div>
 
                 <div class="field input-field">
-                    <input type="password" placeholder="Create password" class="password">
+                    <input type="password" name="password" placeholder="Create password" class="password" required>
                 </div>
 
                 <div class="field input-field">
-                    <input type="password" placeholder="Confirm password" class="password">
+                    <input type="password" name="confirm_password" placeholder="Confirm password" class="password" required>
                     <i class='bx bx-hide eye-icon'></i>
                 </div>
 
                 <div class="field button-field">
-                    <button>Signup</button>
+                    <button type="submit">Signup</button>
                 </div>
             </form>
 
@@ -59,7 +55,9 @@
                 <span>Login with Google</span>
             </a>
         </div>
-        <!-- JavaScript -->
-        <script src="js/script.js"></script>
     </div>
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
 </body>
+
+</html>
