@@ -1,3 +1,17 @@
+<?php
+require "config.php";
+session_start();
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    //Kiểm tra password có trùng với password đã nhập không ?
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +37,10 @@
                     </div>
 
                     <div class="field input-field">
+                        <input type="text" name="name" placeholder="Name" class="input" required>
+                    </div>
+
+                    <div class="field input-field">
                         <input type="password" name="password" placeholder="Create password" class="password" required>
                     </div>
 
@@ -32,12 +50,12 @@
                     </div>
 
                     <div class="field button-field">
-                        <button type="submit">Signup</button>
+                        <button type="submit" name="submit">Signup</button>
                     </div>
                 </form>
 
                 <div class="form-link">
-                    <span>Already have an account? <a href='index.php' class="link login-link">Login</a></span>
+                    <span>Already have an account? <a href='index.php'>Login</a></span>
                 </div>
             </div>
 
