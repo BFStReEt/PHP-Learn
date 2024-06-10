@@ -5,9 +5,15 @@ session_start();
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+    $repassword = $_POST['repassword'];
+
 
     //Kiểm tra password có trùng với password đã nhập không ?
+    if ($password != $repassword) {
+        $error_message = "Passwords don't match !";
+    }
 }
 ?>
 
@@ -45,7 +51,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" name="confirm_password" placeholder="Confirm password" class="password" required>
+                        <input type="password" name="repassword" placeholder="Confirm password" class="password" required>
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
 
