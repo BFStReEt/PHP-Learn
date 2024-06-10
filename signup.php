@@ -13,6 +13,10 @@ if (isset($_POST['submit'])) {
     //Kiểm tra password có trùng với password đã nhập không ?
     if ($password != $repassword) {
         $error_message = "Passwords don't match !";
+    } else {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        //Kiểm tra email tồn tại hay chưa
     }
 }
 ?>
