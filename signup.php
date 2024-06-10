@@ -24,12 +24,11 @@
 
                     <div class="field input-field">
                         <input type="password" name="password" placeholder="Create password" class="password" required>
-                        <i class='bx bx-hide eye-icon'></i>
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" name="confirm_password" placeholder="Confirm password" class="password"
-                            required>
+                        <input type="password" name="confirm_password" placeholder="Confirm password" class="password" required>
+                        <i class='bx bx-hide eye-icon'></i>
                     </div>
 
                     <div class="field button-field">
@@ -38,7 +37,7 @@
                 </form>
 
                 <div class="form-link">
-                    <span>Already have an account? <a href="index.php" class="link login-link">Login</a></span>
+                    <span>Already have an account? <a href='index.php' class="link login-link">Login</a></span>
                 </div>
             </div>
 
