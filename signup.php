@@ -1,5 +1,5 @@
 <?php
-require "config.php";
+require 'config.php';
 session_start();
 
 if (isset($_POST['submit'])) {
@@ -18,6 +18,15 @@ if (isset($_POST['submit'])) {
 
         //Kiểm tra email tồn tại hay chưa
         $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"    
+        if($stmt_check = $conn->prepare($sql_check)){
+            $stmt_check->bind_param("s",$email);
+            $stmt_check->excute();
+            $stmt_check->bind_result($count);
+            $stmt_check->fetch();
+            $stmt_check->close();
+
+            
+        }
     }
 }
 ?>
