@@ -1,29 +1,108 @@
 <?php
 session_start();
-if(isset($_SESSION['email'])){
-    header('location: admin.php');
+require 'config.php';
+
+if (isset($_SESSION['email'])) {
+    header('Location: admin.php');
+    exit();
 }
-if(isset($_POST['dangnhap'])){
+
+$error_message = '';
+
+if (isset($_POST['dangnhap'])) {
     $email = $_POST['email'];
-    $password =  $_POST['password'];
+    $password = $_POST['password'];
 
-    if($email == "ahihi@gmail.com" && $password == "admin1234"){
-        $_SESSION['email'] = $email;
-        header('location:admin.php');
+    // Kiểm tra email và mật khẩu
+    $sql = "SELECT email, password FROM users WHERE email = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($db_email, $db_password);
+            $stmt->fetch();
+            if (password_verify($password, $db_password)) {
+                $_SESSION['email'] = $db_email;
+                header('Location: admin.php');
+                exit();
+            } else {
+                $error_message = "Mật khẩu hoặc tài khoản không đúng!";
+            }
+        } else {
+            $error_message = "Mật khẩu hoặc tài khoản không đúng!";
+        }
+        $stmt->close();
+    } else {
+        $error_message = "Lỗi kết nối cơ sở dữ liệu!";
     }
-    else{
-        echo "Sai tai khoan hoac mat khau !";
-    }
+    $conn->close();
 }
-
 ?>
 
-<form action="login.php" method="post">
-    <label>Email</label>
-    <input type="text" name="email">
+<!DOCTYPE html>
+<html lang="en">
 
-    <label>Password</label>
-    <input type="password" name="password">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 
-    <button type="submit" name="dangnhap">Đăng nhập</button>
-</form>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <section class="container forms">
+        <div class="form login">
+            <div class="form-content">
+                <header>Login</header>
+                <form action="login.php" method="post">
+                    <div class="field input-field">
+                        <input type="email" name="email" placeholder="Email" class="input" required
+                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                    </div>
+                    <div class="field input-field">
+                        <input type="password" name="password" placeholder="Password" class="password" required>
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+                    <?php
+                    if (!empty($error_message)) {
+                        echo "<p style='color:red;'>$error_message</p>";
+                    }
+                    ?>
+                    <div class="form-link">
+                        <a href="#" class="forgot-pass">Forgot password?</a>
+                    </div>
+                    <div class="field button-field">
+                        <button type="submit" name="dangnhap">Login</button>
+                    </div>
+                </form>
+                <div class="form-link">
+                    <span>Don't have an account? <a href='signup.php'>Signup</a></span>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="media-options">
+                <a href="#" class="field facebook">
+                    <i class='bx bxl-facebook facebook-icon'></i>
+                    <span>Login with Facebook</span>
+                </a>
+            </div>
+            <div class="media-options">
+                <a href="#" class="field google">
+                    <img src="images/google.png" alt="" class="google-img">
+                    <span>Login with Google</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
