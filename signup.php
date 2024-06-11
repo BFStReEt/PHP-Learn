@@ -68,13 +68,13 @@ if (isset($_POST['submit'])) {
                 <header>Signup</header>
                 <form action="signup.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input"
-                            value="<?php echo htmlspecialchars($email); ?>" required>
+                        <input type="email" name="email" placeholder="Email" class="input" require
+                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <div class="field input-field">
-                        <input type="text" name="name" placeholder="Name" class="input"
-                            value="<?php echo htmlspecialchars($name); ?>" required>
+                        <input type="text" name="name" placeholder="Name" class="input" required
+                            value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
                     </div>
 
                     <div class="field input-field">
@@ -87,7 +87,9 @@ if (isset($_POST['submit'])) {
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
                     <?php
-                        echo $error_message;
+                        if (isset($error_message)) {
+                            echo "<p style='color:red;'>$error_message</p>";
+                        }
                     ?>
 
                     <div class="field button-field">
