@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         //Kiểm tra email tồn tại hay chưa
+        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"    
     }
 }
 ?>
@@ -55,7 +56,8 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" name="repassword" placeholder="Confirm password" class="password" required>
+                        <input type="password" name="repassword" placeholder="Confirm password" class="password"
+                            required>
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
 
