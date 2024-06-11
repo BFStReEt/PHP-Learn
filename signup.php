@@ -6,27 +6,42 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
     // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $password = $_POST['password'];
-    $repassword = $_POST['repassword'];
-
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+    $repassword = password_hash($_POST['repassword'],PASSWORD_DEFAULT);
 
     //Kiểm tra password có trùng với password đã nhập không ?
-    if ($password != $repassword) {
+    if ($_POST['password'] != $_POST['repassword']) {
         $error_message = "Passwords don't match !";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         //Kiểm tra email tồn tại hay chưa
-        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"    
-        if($stmt_check = $conn->prepare($sql_check)){
+        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"; 
+        if ($stmt_check = $conn->prepare($sql_check)) {
             $stmt_check->bind_param("s",$email);
-            $stmt_check->excute();
+            $stmt_check->execute();
             $stmt_check->bind_result($count);
             $stmt_check->fetch();
             $stmt_check->close();
 
-            
+            if($count > 0)
+                $error_message = "Tài khoản đã có người dùng";
+            else{
+                $sql = "INSERT INTO users (email,name,password) VALUES (?,?,?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sss",$email,$name,$password);
+                if($stmt->execute()){
+                    $success = "Đăng ký thành công";
+                    header("location:index.php");
+                }else{
+                    $error_message = "$stmt->error";
+                }
+
+                $stmt->close();
+            }           
+        }else{
+            $error_message = $conn->error;
         }
+        $conn->close();
     }
 }
 ?>
@@ -51,13 +66,15 @@ if (isset($_POST['submit'])) {
         <div class="form signup">
             <div class="form-content">
                 <header>Signup</header>
-                <form action="register.php" method="post">
+                <form action="signup.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" required>
+                        <input type="email" name="email" placeholder="Email" class="input"
+                            value="<?php echo htmlspecialchars($email); ?>" required>
                     </div>
 
                     <div class="field input-field">
-                        <input type="text" name="name" placeholder="Name" class="input" required>
+                        <input type="text" name="name" placeholder="Name" class="input"
+                            value="<?php echo htmlspecialchars($name); ?>" required>
                     </div>
 
                     <div class="field input-field">
@@ -69,6 +86,9 @@ if (isset($_POST['submit'])) {
                             required>
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
+                    <?php
+                        echo $error_message;
+                    ?>
 
                     <div class="field button-field">
                         <button type="submit" name="submit">Signup</button>
