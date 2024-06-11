@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    require 'config.php';
+    
+    if(isset($_SESSION['email'])){
+        header('location:admin.php');
+    }
+    if(isset($_POST['dangnhap']){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+    })
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +45,7 @@
                         <a href="login.php" class="forgot-pass">Forgot password?</a>
                     </div>
                     <div class="field button-field">
-                        <button>Login</button>
+                        <button type="submit" name="dangnhap">Login</button>
                     </div>
                 </form>
                 <div class="form-link">
