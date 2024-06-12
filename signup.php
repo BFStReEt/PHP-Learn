@@ -32,9 +32,8 @@ if (isset($_POST['submit'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss",$email,$name,$password);
                 if($stmt->execute()){
-                    $success = "Đăng ký thành công";
-                    header("location:login.php");
-                }else{
+                    $success = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
+                    }else{
                     $error_message = "$stmt->error";
                 }
 
