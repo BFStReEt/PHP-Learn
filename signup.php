@@ -1,6 +1,8 @@
 <?php
 require 'config.php';
 session_start();
+$error_message = '';
+$success = '';
 
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
@@ -31,7 +33,7 @@ if (isset($_POST['submit'])) {
                 $stmt->bind_param("sss",$email,$name,$password);
                 if($stmt->execute()){
                     $success = "Đăng ký thành công";
-                    header("location:index.php");
+                    header("location:login.php");
                 }else{
                     $error_message = "$stmt->error";
                 }
@@ -98,7 +100,7 @@ if (isset($_POST['submit'])) {
                 </form>
 
                 <div class="form-link">
-                    <span>Already have an account? <a href='index.php'>Login</a></span>
+                    <span>Already have an account? <a href='login.php'>Login</a></span>
                 </div>
             </div>
 
@@ -121,6 +123,7 @@ if (isset($_POST['submit'])) {
     </section>
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="js/success_message.js"></script>
 </body>
 
 </html>

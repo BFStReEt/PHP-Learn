@@ -19,7 +19,8 @@
                 <header>Forgot</header>
                 <form action="forgot.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" require
+                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <?php
