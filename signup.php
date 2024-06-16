@@ -108,9 +108,19 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
+    <!-- JavaScript phần thông báo đăng ký thành công -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php if(!empty($success_message)):?>
+        var confirmed = confirm("Đăng ký thành công, nhấn oke để chuyển đến trang đăng nhập");
+        if (confirmed) {
+            window.location.href = "login.php";
+        }
+        <?php endif; ?>
+    });
+    </script>
 
     <!-- JavaScript -->
-    <script src="js/success_message.js"></script>
     <script src="js/script.js"></script>
 </body>
 
