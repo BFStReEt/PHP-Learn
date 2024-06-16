@@ -1,13 +1,15 @@
 <?php
 require 'config.php';
 session_start();
+$error_message = '';
+$success_message = '';
 
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
     // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
-    $repassword = password_hash($_POST['repassword'],PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);
 
     //Kiểm tra password có trùng với password đã nhập không ?
     if ($_POST['password'] != $_POST['repassword']) {
@@ -17,22 +19,21 @@ if (isset($_POST['submit'])) {
         //Kiểm tra email tồn tại hay chưa
         $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"; 
         if ($stmt_check = $conn->prepare($sql_check)) {
-            $stmt_check->bind_param("s",$email);
+            $stmt_check->bind_param("s", $email);
             $stmt_check->execute();
             $stmt_check->bind_result($count);
             $stmt_check->fetch();
             $stmt_check->close();
 
-            if($count > 0)
+            if ($count > 0)
                 $error_message = "Tài khoản đã có người dùng";
-            else{
+            else {
                 $sql = "INSERT INTO users (email,name,password) VALUES (?,?,?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss",$email,$name,$password);
                 if($stmt->execute()){
-                    $success = "Đăng ký thành công";
-                    header("location:index.php");
-                }else{
+                    $success_message = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
+                    }else{
                     $error_message = "$stmt->error";
                 }
 
@@ -98,7 +99,7 @@ if (isset($_POST['submit'])) {
                 </form>
 
                 <div class="form-link">
-                    <span>Already have an account? <a href='index.php'>Login</a></span>
+                    <span>Already have an account? <a href='login.php'>Login</a></span>
                 </div>
             </div>
 
@@ -119,8 +120,22 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
+
+    <!-- Nếu có điều kiện if thực thi câu lệnh html -->
+    <?php if(!empty($success_message)): ?>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">$times;</span>
+            <p><?php echo $success_message; ?></p>
+            <button id="confirmButton">OK</button>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src=" js/script.js">
+    </script>
+    <script src="js/success_message.js"></script>
 </body>
 
 </html>

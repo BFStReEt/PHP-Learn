@@ -76,7 +76,7 @@ if (isset($_POST['dangnhap'])) {
                     }
                     ?>
                     <div class="form-link">
-                        <a href="#" class="forgot-pass">Forgot password?</a>
+                        <a href="forgot.php" class="forgot-pass">Forgot password?</a>
                     </div>
                     <div class="field button-field">
                         <button type="submit" name="dangnhap">Login</button>
