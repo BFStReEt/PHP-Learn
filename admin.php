@@ -9,8 +9,7 @@
   }
 ?>
 
-<h1>Lại là trang admin đây !</h1>
-
+<h1>Lại là trang admin đây, xin chào <?php echo $_SESSION['name'];?> </h1>
 <form action="admin.php" method="post">
     <button type="submit" name="logout">Logout</button>
 </form>

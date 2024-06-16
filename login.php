@@ -14,16 +14,17 @@ if (isset($_POST['dangnhap'])) {
     $password = $_POST['password'];
 
     // Kiểm tra email và mật khẩu
-    $sql = "SELECT email, password FROM users WHERE email = ?";
+    $sql = "SELECT email, password, name FROM users WHERE email = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($db_email, $db_password);
+            $stmt->bind_result($db_email, $db_password, $db_name);
             $stmt->fetch();
             if (password_verify($password, $db_password)) {
                 $_SESSION['email'] = $db_email;
+                $_SESSION['name'] = $db_name;
                 header('Location: admin.php');
                 exit();
             } else {
