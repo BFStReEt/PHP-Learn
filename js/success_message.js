@@ -1,19 +1,28 @@
-// JS phần hiển thị thông báo khi đăng ký thành công !
-//Lấy biến modal trong thanh thông báo
-var modal = document.getElementById("successModal");
-var span = document.getElementById("close")[0];//[0] = là phần tử đầu tiên của close trong trang
-var confirmButton = document.getElementById("confirmButton");
+document.addEventListener("DOMContentLoaded", function () {
+    var notificationBar = document.getElementById("notificationBar");
+    var closeBtn = document.getElementById("closeBtn");
+    var confirmButton = document.getElementById("confirmButton");
 
-//Người dùng ấn nút X
-span.onclick = function () {
-    modal.style.display = "none";
-}
+    if (notificationBar) {
+        notificationBar.style.display = "block";
 
-//Người dùng click vào bên ngoài thanh thông báo
-window.onclick = function (event) {
-    if (event.target == modal) {
-        //Bắt sự kiện nếu click ngoài thanh thông báo
-        modal.style.display = "none";
+        closeBtn.onclick = function () {
+            notificationBar.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == notificationBar) {
+                notificationBar.style.display = "none";
+            }
+        }
+
+        confirmButton.onclick = function () {
+            var confirmed = confirm("Đăng ký thành công, nhấn OK để chuyển đến trang đăng nhập.");
+            if (confirmed) {
+                window.location.href = "login.php"; // Redirect to login page after confirmation
+            } else {
+                notificationBar.style.display = "none"; // Close notification bar if canceled
+            }
+        }
     }
-}
-
+});

@@ -7,7 +7,6 @@ $success_message = '';
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
-    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);
 
@@ -15,7 +14,6 @@ if (isset($_POST['submit'])) {
     if ($_POST['password'] != $_POST['repassword']) {
         $error_message = "Passwords don't match !";
     } else {
-
         //Kiểm tra email tồn tại hay chưa
         $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"; 
         if ($stmt_check = $conn->prepare($sql_check)) {
@@ -25,28 +23,28 @@ if (isset($_POST['submit'])) {
             $stmt_check->fetch();
             $stmt_check->close();
 
-            if ($count > 0)
+            if ($count > 0) {
                 $error_message = "Tài khoản đã có người dùng";
-            else {
-                $sql = "INSERT INTO users (email,name,password) VALUES (?,?,?)";
+            } else {
+                $sql = "INSERT INTO users (email, name, password) VALUES (?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sss",$email,$name,$password);
-                if($stmt->execute()){
-                    $success_message = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
-                    }else{
-                    $error_message = "$stmt->error";
+                $stmt->bind_param("sss", $email, $name, $password);
+                if ($stmt->execute()) {
+                    // Set success message here to trigger in the JavaScript
+                    $success_message = "success"; // or any value you want to identify as success
+                } else {
+                    $error_message = $stmt->error;
                 }
 
                 $stmt->close();
             }           
-        }else{
+        } else {
             $error_message = $conn->error;
         }
         $conn->close();
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +54,6 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -69,19 +66,16 @@ if (isset($_POST['submit'])) {
                 <header>Signup</header>
                 <form action="signup.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require
+                        <input type="email" name="email" placeholder="Email" class="input" required
                             value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
-
                     <div class="field input-field">
                         <input type="text" name="name" placeholder="Name" class="input" required
                             value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
                     </div>
-
                     <div class="field input-field">
                         <input type="password" name="password" placeholder="Create password" class="password" required>
                     </div>
-
                     <div class="field input-field">
                         <input type="password" name="repassword" placeholder="Confirm password" class="password"
                             required>
@@ -92,26 +86,21 @@ if (isset($_POST['submit'])) {
                             echo "<p style='color:red;'>$error_message</p>";
                         }
                     ?>
-
                     <div class="field button-field">
                         <button type="submit" name="submit">Signup</button>
                     </div>
                 </form>
-
                 <div class="form-link">
                     <span>Already have an account? <a href='login.php'>Login</a></span>
                 </div>
             </div>
-
             <div class="line"></div>
-
             <div class="media-options">
                 <a href="#" class="field facebook">
                     <i class='bx bxl-facebook facebook-icon'></i>
                     <span>Login with Facebook</span>
                 </a>
             </div>
-
             <div class="media-options">
                 <a href="#" class="field google">
                     <img src="images/google.png" alt="" class="google-img">
@@ -121,21 +110,16 @@ if (isset($_POST['submit'])) {
         </div>
     </section>
 
-    <!-- Nếu có điều kiện if thực thi câu lệnh html -->
-    <?php if(!empty($success_message)): ?>
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <span class="close">$times;</span>
-            <p><?php echo $success_message; ?></p>
-            <button id="confirmButton">OK</button>
-        </div>
+    <!-- Notification Bar -->
+    <div id="notificationBar" class="notification-bar">
+        <span id="closeBtn" class="close-btn">&times;</span>
+        <p>Đăng ký thành công, nhấn OK để chuyển đến trang đăng nhập.</p>
+        <button id="confirmButton">OK</button>
     </div>
-    <?php endif; ?>
 
     <!-- JavaScript -->
-    <script src=" js/script.js">
-    </script>
     <script src="js/success_message.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
