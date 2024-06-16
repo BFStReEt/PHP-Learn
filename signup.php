@@ -2,7 +2,7 @@
 require 'config.php';
 session_start();
 $error_message = '';
-$success = '';
+$success_message = '';
 
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss",$email,$name,$password);
                 if($stmt->execute()){
-                    $success = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
+                    $success_message = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
                     }else{
                     $error_message = "$stmt->error";
                 }
@@ -120,8 +120,20 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
+    <!-- Nếu có điều kiện if thực thi câu lệnh html -->
+    <?php if(!empty($success_message)): ?>{
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">$times;</span>
+            <p><?php echo $success_message; ?></p>
+            <button id="confirmButton">OK</button>
+        </div>
+    </div>
+    }
+    ?>
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src=" js/script.js">
+    </script>
     <script src="js/success_message.js"></script>
 </body>
 
