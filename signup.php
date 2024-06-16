@@ -8,8 +8,8 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
     // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
-    $repassword = password_hash($_POST['repassword'],PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);
 
     //Kiểm tra password có trùng với password đã nhập không ?
     if ($_POST['password'] != $_POST['repassword']) {
@@ -17,29 +17,37 @@ if (isset($_POST['submit'])) {
     } else {
 
         //Kiểm tra email tồn tại hay chưa
-        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"; 
+        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?";
         if ($stmt_check = $conn->prepare($sql_check)) {
-            $stmt_check->bind_param("s",$email);
+            $stmt_check->bind_param("s", $email);
             $stmt_check->execute();
             $stmt_check->bind_result($count);
             $stmt_check->fetch();
             $stmt_check->close();
 
-            if($count > 0)
+            if ($count > 0)
                 $error_message = "Tài khoản đã có người dùng";
-            else{
+            else {
                 $sql = "INSERT INTO users (email,name,password) VALUES (?,?,?)";
                 $stmt = $conn->prepare($sql);
+<<<<<<< HEAD
                 $stmt->bind_param("sss",$email,$name,$password);
                 if($stmt->execute()){
                     $success_message = "Đăng ký thành công, nhấn oke chuyển trang đăng nhập";
                     }else{
+=======
+                $stmt->bind_param("sss", $email, $name, $password);
+                if ($stmt->execute()) {
+                    $success = "Đăng ký thành công";
+                    header("location:index.php");
+                } else {
+>>>>>>> 47b3a178b4956dcca7295fe32b61410453df10a1
                     $error_message = "$stmt->error";
                 }
 
                 $stmt->close();
-            }           
-        }else{
+            }
+        } else {
             $error_message = $conn->error;
         }
         $conn->close();
@@ -69,13 +77,11 @@ if (isset($_POST['submit'])) {
                 <header>Signup</header>
                 <form action="signup.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" require value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <div class="field input-field">
-                        <input type="text" name="name" placeholder="Name" class="input" required
-                            value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
+                        <input type="text" name="name" placeholder="Name" class="input" required value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
                     </div>
 
                     <div class="field input-field">
@@ -83,14 +89,13 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" name="repassword" placeholder="Confirm password" class="password"
-                            required>
+                        <input type="password" name="repassword" placeholder="Confirm password" class="password" required>
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
                     <?php
-                        if (isset($error_message)) {
-                            echo "<p style='color:red;'>$error_message</p>";
-                        }
+                    if (isset($error_message)) {
+                        echo "<p style='color:red;'>$error_message</p>";
+                    }
                     ?>
 
                     <div class="field button-field">
