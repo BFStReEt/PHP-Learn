@@ -30,8 +30,7 @@ if (isset($_POST['submit'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss", $email, $name, $password);
                 if ($stmt->execute()) {
-                    // Set success message here to trigger in the JavaScript
-                    $success_message = "success"; // or any value you want to identify as success
+                    $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập"; 
                 } else {
                     $error_message = $stmt->error;
                 }
@@ -109,13 +108,6 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
-
-    <!-- Notification Bar -->
-    <div id="notificationBar" class="notification-bar">
-        <span id="closeBtn" class="close-btn">&times;</span>
-        <p>Đăng ký thành công, nhấn OK để chuyển đến trang đăng nhập.</p>
-        <button id="confirmButton">OK</button>
-    </div>
 
     <!-- JavaScript -->
     <script src="js/success_message.js"></script>

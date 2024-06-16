@@ -183,25 +183,6 @@ a.google span {
     color: #232836;
 }
 
-.notification-bar {
-    display: none;
-    background-color: #ffffff;
-    color: black;
-    text-align: center;
-    padding: 15px;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    top: 0;
-}
-
-.close-btn {
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 @media screen and (max-width: 400px) {
     .form {
         padding: 20px 10px;
