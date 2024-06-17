@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 $error_message = '';
     if(isset($_POST['submit'])){
