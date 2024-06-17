@@ -1,9 +1,25 @@
 <?php
 require 'config.php';
+$error_message = '';
     if(isset($_POST['submit'])){
         $email = $_POST['email'];
-        $sql =
-        //K
+        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        //kiểm tra email tồn tại
+
+        if ($stmt_check = $conn->prepare($sql)) {
+            $stmt_check->bind_param("s", $email);
+            $stmt_check->execute();
+            $stmt_check->bind_result($count);
+            $stmt_check->fetch();
+            $stmt_check->close();
+            if($count > 0){
+
+            }else{
+                $error_message = "Tài khoản này không tồn tại";
+            }
+
+        }
+        $conn->close();
     }
 ?>
 
