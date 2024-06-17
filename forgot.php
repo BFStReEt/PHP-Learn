@@ -1,3 +1,12 @@
+<?php
+require 'config.php';
+    if(isset($_POST['submit'])){
+        $email = $_POST['email'];
+        $sql =
+        //K
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
