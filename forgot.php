@@ -14,7 +14,6 @@ $error_message = '';
             $stmt_check->fetch();
             $stmt_check->close();
             if($count > 0){
-
             }else{
                 $error_message = "Tài khoản này không tồn tại";
             }
