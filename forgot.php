@@ -2,25 +2,25 @@
 session_start();
 require 'config.php';
 $error_message = '';
-    if(isset($_POST['submit'])){
-        $email = $_POST['email'];
-        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-        //kiểm tra email tồn tại
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+    //kiểm tra email tồn tại
 
-        if ($stmt_check = $conn->prepare($sql)) {
-            $stmt_check->bind_param("s", $email);
-            $stmt_check->execute();
-            $stmt_check->bind_result($count);
-            $stmt_check->fetch();
-            $stmt_check->close();
-            if($count > 0){
-            }else{
-                $error_message = "Tài khoản này không tồn tại";
-            }
-
+    if ($stmt_check = $conn->prepare($sql)) {
+        $stmt_check->bind_param("s", $email);
+        $stmt_check->execute();
+        $stmt_check->bind_result($count);
+        $stmt_check->fetch();
+        $stmt_check->close();
+        if ($count > 0) {
+            //Tạo ra một mã gồm 6 chữ số
+        } else {
+            $error_message = "Tài khoản này không tồn tại";
         }
-        $conn->close();
     }
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +44,7 @@ $error_message = '';
                 <header>Forgot</header>
                 <form action="forgot.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" require value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <?php
