@@ -41,3 +41,5 @@ PHP
     - Cấu hình và triển khai trên máy chủ web (Apache, Nginx)
     - Quản lý phiên bản mã nguồn với Git và GitHub
     - Triển khai ứng dụng lên các dịch vụ hosting hoặc cloud (AWS, Heroku)
+  
+Composer là một Dependency Management trong PHP, công cụ quản lý các thư viện mà project Php của bạn sử dụng. Một cách chính xác hơn Composer quản lý sự phụ thuộc các tài nguyên trong dự án. Nó cho phép khai báo các thư viện mà dự án của bạn sử dụng, composer sẽ tự động tải code của các thư viện. Nó tạo ra các file cần thiết vào project của bạn, và cập nhật các thư viện khi có phiên bản mới.
