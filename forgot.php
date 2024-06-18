@@ -15,6 +15,10 @@ if (isset($_POST['submit'])) {
         $stmt_check->close();
         if ($count > 0) {
             //Tạo ra một mã gồm 6 chữ số
+            $otp = rand(100000, 999999);
+            //Lưu mã OTP vào session
+            $_SESSION['otp'] = $otp;
+            $_SESSION['otp_email'] = $email;
         } else {
             $error_message = "Tài khoản này không tồn tại";
         }
