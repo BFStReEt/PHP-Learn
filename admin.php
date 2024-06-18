@@ -3,7 +3,7 @@
   if(!isset($_SESSION['email']))  {
     header('location:login.php');
   }
-
+// Not thing
   if(isset($_POST['logout'])){
     header("location:logout.php");
   }
