@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
             //Lưu mã OTP vào session
             $_SESSION['otp'] = $otp;
             $_SESSION['otp_email'] = $email;
+            $error_message = $otp;
         } else {
             $error_message = "Tài khoản này không tồn tại";
         }
