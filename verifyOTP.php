@@ -14,8 +14,8 @@ if (isset($_POST['submit'])) {
 
         if (($current_time - $otp_time) <= $otp_validity_duration) {
             if ($entered_otp == $otp) {
-                
                 // Chuyển hướng đến trang đổi mật khẩu hoặc thực hiện hành động đổi mật khẩu
+                header("location:changepassword.php");
             } else {
                 $error_message = "Mã OTP không chính xác.";
             }
