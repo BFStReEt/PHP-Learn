@@ -1,6 +1,9 @@
 <?php
 session_start();
 require 'config.php';
+require_once './PHPMailer/Exception.php';
+require_once './PHPMailer/PHPMailer.php';
+require_once './PHPMailer/SMTP.php';
 $error_message = '';
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
@@ -26,6 +29,11 @@ if (isset($_POST['submit'])) {
     }
     $conn->close();
 }
+
+//Hàm gửi mail
+function SendMail(){
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +57,8 @@ if (isset($_POST['submit'])) {
                 <header>Forgot</header>
                 <form action="forgot.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" require
+                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <?php
