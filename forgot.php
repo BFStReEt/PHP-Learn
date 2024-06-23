@@ -1,9 +1,13 @@
 <?php
 session_start();
 require 'config.php';
+//Thư viện PHPMailer
 require_once './PHPMailer/Exception.php';
 require_once './PHPMailer/PHPMailer.php';
 require_once './PHPMailer/SMTP.php';
+require_once './function.php';
+
+
 $error_message = '';
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
