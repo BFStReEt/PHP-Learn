@@ -1,41 +1,33 @@
 <?php
 session_start();
 require 'config.php';
-//Thư viện PHPMailer
-require_once './PHPMailer/Exception.php';
-require_once './PHPMailer/PHPMailer.php';
-require_once './PHPMailer/SMTP.php';
-require_once './sendMail.php';
-
 $error_message = '';
+
 if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-    //kiểm tra email tồn tại
+    $entered_otp = $_POST['otp'];
+    $current_time = time();
+    $otp_validity_duration = 300; // 5 phút = 300 giây
 
-    if ($stmt_check = $conn->prepare($sql)) {
-        $stmt_check->bind_param("s", $email);
-        $stmt_check->execute();
-        $stmt_check->bind_result($count);
-        $stmt_check->fetch();
-        $stmt_check->close();
-        if ($count > 0) {
-            //Tạo ra một mã gồm 6 chữ số
-            $otp = rand(100000, 999999);
-            //Lưu mã OTP vào session
-            $_SESSION['otp'] = $otp;
-            $_SESSION['otp_email'] = $email;
-            $_SESSION['otp_time'] = time();
-            
-            SendMail($email,'YOUR OTP',$otp);
-            header("location:verifyOTP.php");
+    if (isset($_SESSION['otp']) && isset($_SESSION['otp_time'])) {
+        $otp = $_SESSION['otp'];
+        $otp_time = $_SESSION['otp_time'];
+
+        if (($current_time - $otp_time) <= $otp_validity_duration) {
+            if ($entered_otp == $otp) {
+                
+                // Chuyển hướng đến trang đổi mật khẩu hoặc thực hiện hành động đổi mật khẩu
+            } else {
+                $error_message = "Mã OTP không chính xác.";
+            }
         } else {
-            $error_message = "Tài khoản này không tồn tại";
+            $error_message = "Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới.";
+            unset($_SESSION['otp']);
+            unset($_SESSION['otp_time']);
         }
+    } else {
+        $error_message = "Vui lòng yêu cầu mã OTP.";
     }
-    $conn->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +37,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot</title>
+    <title>Verify OTP</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -56,11 +48,10 @@ if (isset($_POST['submit'])) {
     <section class="container forms">
         <div class="form signup">
             <div class="form-content">
-                <header>Forgot</header>
-                <form action="forgot.php" method="post">
+                <header>Verify OTP</header>
+                <form action="verifyOTP.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="text" name="otp" placeholder="Enter OTP" class="input" required>
                     </div>
 
                     <?php
