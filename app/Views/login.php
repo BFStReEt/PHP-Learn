@@ -1,6 +1,5 @@
 <?php
 session_start();
-require __DIR__ . './config/config.php';
 
 if (isset($_SESSION['email'])) {
     header('Location: admin.php');
@@ -51,7 +50,7 @@ if (isset($_POST['dangnhap'])) {
     <title>Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -102,7 +101,7 @@ if (isset($_POST['dangnhap'])) {
         </div>
     </section>
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="/public/js/script.js"></script>
 </body>
 
 </html>
