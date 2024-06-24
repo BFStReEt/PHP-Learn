@@ -47,3 +47,9 @@ Composer là một Dependency Management trong PHP, công cụ quản lý các t
 - Cài đặt composer https://getcomposer.org/Composer-Setup.exe
 - Dùng câu lệnh composer require vlucas/phpdotenv để tải phpdotenv
 
+Tại sao cần VENDOR ?
+- Quản lý các thư viện bên thứ ba: Tất cả các thư viện mà bạn cài đặt thông qua Composer sẽ được lưu trữ trong thư mục vendor.
+
+- Tự động tải: Composer tạo ra một tệp autoload.php trong thư mục vendor, giúp tự động tải các lớp từ các thư viện bên thứ ba mà bạn sử dụng, làm cho việc sử dụng các thư viện này trở nên dễ dàng hơn.
+
+- Tách biệt mã nguồn của bạn và thư viện bên ngoài: Thư mục vendor giúp giữ cho mã nguồn của bạn tách biệt với mã nguồn của các thư viện bên ngoài, giúp mã nguồn của bạn sạch sẽ và dễ quản lý hơn.
