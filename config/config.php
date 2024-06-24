@@ -1,5 +1,10 @@
 
 <?php
+require_once __DIR__ . '/../vendor/autoload.php'; //DIR trả về đường dẫn thư mục hiện tại
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
