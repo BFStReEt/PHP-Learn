@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; //DIR trả về đường dẫn thư mục hiện tại
 
@@ -12,7 +11,7 @@ $db = $_ENV['DB_DATABASE'];
 $user = $_ENV['DB_USERNAME'];
 $pass = $_ENV['DB_PASSWORD'];
 
-$conn = new mysqli($host, $db, $user, $pass);
+$conn = new mysqli($host, $user, $pass,$db);
 
 if ($conn->connect_error) {
     die("Kết nối thất bại " . $conn->connect_error);
