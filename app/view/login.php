@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require __DIR__ . '/../config.php';
+
 if (isset($_SESSION['email'])) {
     header('Location: admin.php');
     exit();
@@ -50,7 +52,7 @@ if (isset($_POST['dangnhap'])) {
     <title>Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -63,7 +65,8 @@ if (isset($_POST['dangnhap'])) {
                 <header>Login</header>
                 <form action="login.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" required value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" required
+                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
                     <div class="field input-field">
                         <input type="password" name="password" placeholder="Password" class="password" required>
