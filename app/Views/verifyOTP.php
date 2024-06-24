@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $entered_otp = $_POST['otp'];
     $current_time = time();
     $otp_validity_duration = 300; // 5 phút = 300 giây
-    //test new commit
+
     if (isset($_SESSION['otp']) && isset($_SESSION['otp_time'])) {
         $otp = $_SESSION['otp'];
         $otp_time = $_SESSION['otp_time'];
