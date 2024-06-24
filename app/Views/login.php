@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config.php';
+require __DIR__ . './config/config.php';
 
 if (isset($_SESSION['email'])) {
     header('Location: admin.php');
@@ -64,8 +64,7 @@ if (isset($_POST['dangnhap'])) {
                 <header>Login</header>
                 <form action="login.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" required
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" required value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
                     <div class="field input-field">
                         <input type="password" name="password" placeholder="Password" class="password" required>
