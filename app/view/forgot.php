@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config.php';
+require __DIR__ . '/../config.php';
 //Thư viện PHPMailer
 require_once './PHPMailer/Exception.php';
 require_once './PHPMailer/PHPMailer.php';

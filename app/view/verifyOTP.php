@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config.php';
+require __DIR__ . '/../config.php';
 $error_message = '';
 
 if (isset($_POST['submit'])) {
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     <title>Verify OTP</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
         </div>
     </section>
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="/public/js/script.js"></script>
 </body>
 
 </html>
