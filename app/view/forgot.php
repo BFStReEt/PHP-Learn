@@ -2,10 +2,10 @@
 session_start();
 require __DIR__ . '/../config.php';
 //Thư viện PHPMailer
-require_once './PHPMailer/Exception.php';
-require_once './PHPMailer/PHPMailer.php';
-require_once './PHPMailer/SMTP.php';
-require_once './sendMail.php';
+require_once __DIR__ . '/../libraries/PHPMailer/Exception.php';
+require_once __DIR__ . '/../libraries/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../libraries/PHPMailer/SMTP.php';
+require_once __DIR__ . '/../libraries/sendMail.php';
 
 $error_message = '';
 if (isset($_POST['submit'])) {
@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
             $_SESSION['otp'] = $otp;
             $_SESSION['otp_email'] = $email;
             $_SESSION['otp_time'] = time();
-            
-            SendMail($email,'YOUR OTP',$otp);
+
+            SendMail($email, 'YOUR OTP', $otp);
             header("location:verifyOTP.php");
         } else {
             $error_message = "Tài khoản này không tồn tại";
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     <title>Forgot</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="PHP-LEARN/public/css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -59,8 +59,7 @@ if (isset($_POST['submit'])) {
                 <header>Forgot</header>
                 <form action="forgot.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" require
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" require value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
 
                     <?php

@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         $error_message = "Passwords don't match !";
     } else {
         //Kiểm tra email tồn tại hay chưa
-        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?"; 
+        $sql_check = "SELECT COUNT(*) FROM users WHERE email = ?";
         if ($stmt_check = $conn->prepare($sql_check)) {
             $stmt_check->bind_param("s", $email);
             $stmt_check->execute();
@@ -30,13 +30,13 @@ if (isset($_POST['submit'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("sss", $email, $name, $password);
                 if ($stmt->execute()) {
-                    $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập"; 
+                    $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập";
                 } else {
                     $error_message = $stmt->error;
                 }
 
                 $stmt->close();
-            }           
+            }
         } else {
             $error_message = $conn->error;
         }
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="PHP-LEARN/public/css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -65,25 +65,22 @@ if (isset($_POST['submit'])) {
                 <header>Signup</header>
                 <form action="signup.php" method="post">
                     <div class="field input-field">
-                        <input type="email" name="email" placeholder="Email" class="input" required
-                            value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
+                        <input type="email" name="email" placeholder="Email" class="input" required value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>">
                     </div>
                     <div class="field input-field">
-                        <input type="text" name="name" placeholder="Name" class="input" required
-                            value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
+                        <input type="text" name="name" placeholder="Name" class="input" required value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>">
                     </div>
                     <div class="field input-field">
                         <input type="password" name="password" placeholder="Create password" class="password" required>
                     </div>
                     <div class="field input-field">
-                        <input type="password" name="repassword" placeholder="Confirm password" class="password"
-                            required>
+                        <input type="password" name="repassword" placeholder="Confirm password" class="password" required>
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
                     <?php
-                        if (isset($error_message)) {
-                            echo "<p style='color:red;'>$error_message</p>";
-                        }
+                    if (isset($error_message)) {
+                        echo "<p style='color:red;'>$error_message</p>";
+                    }
                     ?>
                     <div class="field button-field">
                         <button type="submit" name="submit">Signup</button>
@@ -110,14 +107,14 @@ if (isset($_POST['submit'])) {
     </section>
     <!-- JavaScript phần thông báo đăng ký thành công -->
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        <?php if(!empty($success_message)):?>
-        var confirmed = confirm("Đăng ký thành công, nhấn oke để chuyển đến trang đăng nhập");
-        if (confirmed) {
-            window.location.href = "login.php";
-        }
-        <?php endif; ?>
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php if (!empty($success_message)) : ?>
+                var confirmed = confirm("Đăng ký thành công, nhấn oke để chuyển đến trang đăng nhập");
+                if (confirmed) {
+                    window.location.href = "login.php";
+                }
+            <?php endif; ?>
+        });
     </script>
 
     <!-- JavaScript -->
