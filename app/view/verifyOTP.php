@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     <title>Verify OTP</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="PHP-LEARN/public/css/style.css">
+    <link rel="stylesheet" href="./././style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
