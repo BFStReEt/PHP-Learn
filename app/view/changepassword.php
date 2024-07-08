@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +27,7 @@
                     </div>
 
                     <div class="field input-field">
-                        <input type="text" name="repassword" placeholder="Confirm 111password" class="input" required>
+                        <input type="text" name="repassword" placeholder="Confirm password" class="input" required>
                     </div>
 
                     <?php
