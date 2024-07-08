@@ -2,10 +2,10 @@
 session_start();
 require __DIR__ . '/../config.php';
 //Thư viện PHPMailer
-require_once __DIR__ . './../libraries/PHPMailer/Exception.php';
-require_once __DIR__ . './../libraries/PHPMailer/PHPMailer.php';
-require_once __DIR__ . './../libraries/PHPMailer/SMTP.php';
-require_once __DIR__ . './../libraries/sendMail.php';
+require_once __DIR__ . '/../libraries/PHPMailer/Exception.php';
+require_once __DIR__ . '/../libraries/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../libraries/PHPMailer/SMTP.php';
+require_once __DIR__ . '/sendMail.php';
 
 $error_message = '';
 if (isset($_POST['submit'])) {
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     <title>Forgot</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./././style.css">
+    <link rel="stylesheet" href="/../PHP-Learn/public/style.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 

@@ -51,7 +51,7 @@ if (isset($_POST['dangnhap'])) {
     <title>Login</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./././style.css">
+    <link rel="stylesheet" href="/../PHP-Learn/public/style.css">
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
