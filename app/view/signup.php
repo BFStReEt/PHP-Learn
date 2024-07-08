@@ -118,7 +118,7 @@ if (isset($_POST['submit'])) {
     </script>
 
     <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="/../PHP-Learn/public/js/script.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,28 @@
 <?php
-
+require __DIR__ . '/../config.php';
+session_start();
+$error_message = '';
+$success_message = '';
+if (isset($_POST['submit'])) {
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);
+    //Kiểm tra password có trùng với password đã nhập không ?
+    if ($_POST['password'] != $_POST['repassword']) {
+        $error_message = "Passwords don't match !";
+    } else {
+        $_SESSION['otp_email'] = $email;
+        $sql = "INSERT INTO users (password) VALUES ? WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $email, $name, $password);
+        if ($stmt->execute()) {
+            $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập";
+        } else {
+            $error_message = $stmt->error;
+        }
+        $stmt->close();
+    }
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,5 +73,19 @@
     <!-- JavaScript -->
     <script src="js/script.js"></script>
 </body>
+<!-- JavaScript phần thông báo đăng ký thành công -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php if (!empty($success_message)) : ?>
+            var confirmed = confirm("Đăng ký thành công, nhấn oke để chuyển đến trang đăng nhập");
+            if (confirmed) {
+                window.location.href = "login.php";
+            }
+        <?php endif; ?>
+    });
+</script>
+
+<!-- JavaScript -->
+<script src="/../PHP-Learn/public/js/script.js"></script>
 
 </html>
