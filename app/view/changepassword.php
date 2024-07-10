@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['otp_email'] = $email;
         $sql = "INSERT INTO users (password) VALUES ? WHERE email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $email, $name, $password);
+        $stmt->bind_param("s", $password);
         if ($stmt->execute()) {
             $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập";
         } else {
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chaneg Password</title>
+    <title>Change Password</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/../PHP-Learn/public/style.css">
