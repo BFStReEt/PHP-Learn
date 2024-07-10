@@ -4,16 +4,15 @@ session_start();
 $error_message = '';
 $success_message = '';
 if (isset($_POST['submit'])) {
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);
     //Kiểm tra password có trùng với password đã nhập không ?
     if ($_POST['password'] != $_POST['repassword']) {
         $error_message = "Passwords don't match !";
     } else {
-        $_SESSION['otp_email'] = $email;
-        $sql = "INSERT INTO users (password) VALUES ? WHERE email = ?";
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $email = $_SESSION['otp_email'];
+        $sql = "UPDATE users SET password =  ?  WHERE email = ? ";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $password);
+        $stmt->bind_param("ss", $password, $email);
         if ($stmt->execute()) {
             $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập";
         } else {
@@ -77,8 +76,10 @@ if (isset($_POST['submit'])) {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         <?php if (!empty($success_message)) : ?>
-            var confirmed = confirm("Đăng ký thành công, nhấn oke để chuyển đến trang đăng nhập");
+            var confirmed = confirm("Đăng ký thành công, chuyển đến trang đăng nhập");
             if (confirmed) {
+                window.location.href = "login.php";
+            } else {
                 window.location.href = "login.php";
             }
         <?php endif; ?>
