@@ -15,7 +15,8 @@ switch ($page_layout) {
         require __DIR__ . 'app/view/forgot.php';
         break;
     case 'changepassword':
-        require __DIR__ . 'app/view/changepassword.php'
+        require __DIR__ . 'app/view/changepassword.php';
+        break;
 }
 ?>
 
