@@ -3,6 +3,10 @@ session_start();
 require __DIR__ . '/../config.php';
 $error_message = '';
 
+if (!isset($_SESSION['otp_email'])) {
+    header('location:forgot.php');
+}
+
 if (isset($_POST['submit'])) {
     $entered_otp = $_POST['otp'];
     $current_time = time();
