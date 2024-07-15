@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_destroy();
 require __DIR__ . '/../config.php';
 //Thư viện PHPMailer
 require_once __DIR__ . '/../libraries/PHPMailer/Exception.php';

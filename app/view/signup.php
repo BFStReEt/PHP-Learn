@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="media-options">
                 <a href="#" class="field google">
-                    <img src="images/google.png" alt="" class="google-img">
+                    <img src="/../PHP-Learn/public/images/google.png" alt="" class="google-img">
                     <span>Login with Google</span>
                 </a>
             </div>

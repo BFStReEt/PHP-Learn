@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
         $stmt->bind_param("ss", $password, $email);
         if ($stmt->execute()) {
             $success_message = "Đăng ký thành công, nhấn xác nhận qua trang đăng nhập";
+            session_destroy();
         } else {
             $error_message = $stmt->error;
         }

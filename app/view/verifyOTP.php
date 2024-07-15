@@ -1,11 +1,14 @@
 <?php
 session_start();
 require __DIR__ . '/../config.php';
-$error_message = '';
 
-if (!isset($_SESSION['otp_email'])) {
-    header('location:forgot.php');
+if (!isset($_SESSION['otp']) || !isset($_SESSION['otp_email'])) {
+    // Nếu không có, chuyển hướng người dùng về trang forgot.php        
+    header("location: forgot.php");
+    exit();
 }
+
+$error_message = '';
 
 if (isset($_POST['submit'])) {
     $entered_otp = $_POST['otp'];
